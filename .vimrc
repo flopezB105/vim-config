@@ -50,3 +50,12 @@ nmap <C-g> :setlocal spell spelllang=en_en<CR>
 
 "ConqueGDB arm
 let g:ConqueGdb_GdbExe = '/usr/local/bin/arm-none-eabi-gdb'
+
+"Doxygen doc
+let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns   "
+let g:DoxygenToolkit_blockHeader="-------------------------------"
+let g:DoxygenToolkit_blockFooter="---------------------------------"
+let g:DoxygenToolkit_authorName="flopez"
+let g:DoxygenToolkit_licenseTag="""\<enter>"
