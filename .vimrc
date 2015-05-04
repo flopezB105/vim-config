@@ -31,7 +31,7 @@ set incsearch
 "set ignorecase
 
 "ctrlp plugins
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+set runtimepath^=~/.vim/bundle/ctrlp
 
 "Map spell check
 map <F4> :set spell!<CR><Bar>:echo "Spell Check: " . strpart("OffOn", 3 * &spell, 3)<CR>
