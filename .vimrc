@@ -59,3 +59,24 @@ let g:DoxygenToolkit_blockHeader="-------------------------------"
 let g:DoxygenToolkit_blockFooter="---------------------------------"
 let g:DoxygenToolkit_authorName="flopez"
 let g:DoxygenToolkit_licenseTag="""\<enter>"
+
+"Find in Google
+if $TERM =~ "xterm"
+
+    vmap ?? y<Esc>:silent exec
+                \ ":!/usr/bin/opera http://www.google.com/search?q='"
+                \ . substitute(@","\\W\\+\\\\|\\<\\w\\>",'\\%20',"g")
+                \ . "' &"<CR><CR>
+
+else
+
+    vmap ?? <Esc>:silent exec
+                \ ":!start c:/opera/6/opera.exe http://www.google.com/search?q=\""
+                \ . substitute(@*,"\\W\\+\\\\|\\<\\w\\>"," ","g")
+                \ . "\""<CR><CR>
+
+endif
+
+"Config clipboard
+:set clipboard=unnamed 
+:set clipboard=unnamedplus
