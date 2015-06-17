@@ -80,3 +80,25 @@ endif
 "Config clipboard
 :set clipboard=unnamed 
 :set clipboard=unnamedplus
+
+"Auto header gates
+function! s:insert_gates()
+  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+  execute "normal! i#ifndef " . gatename
+  execute "normal! o#define " . gatename . " "
+  
+  execute "normal! o#ifdef __cplusplus"
+  execute "normal! oextern \"C\" {"
+  execute "normal! o#endif" 
+
+  execute "normal! o#ifdef __cplusplus"
+  execute "normal! o}" 
+  execute "normal! o#endif" 
+
+  execute "normal! Go#endif /* " . gatename . " */"
+  normal! kk
+endfunction
+autocmd BufNewFile *.{h,hh} call <SID>insert_gates()
+
+"headers in .h
+let g:C_SourceCodeExtensions  = 'h cc cp cxx cpp CPP c++ C i ii'

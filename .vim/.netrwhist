@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/tmp/PIC32 USB Digital Audio Accesory Board Demos/USB Projects'
-let g:netrw_dirhist_2='/tmp/dopplerPC/test/channels_file'
-let g:netrw_dirhist_3='/home/flopez/repoB105/lineo/dopplerPC/driver'
-let g:netrw_dirhist_4='/home/flopez/microchip_solutions_v2012-04-03/USB/Device - LibUSB - Generic Driver Demo'
-let g:netrw_dirhist_5='/home/flopez/microchip_solutions_v2012-04-03/USB/Device - HID - Custom Demos/PnP Demo - Cross Platform Software/HIDAPI'
-let g:netrw_dirhist_6='/home/flopez/microchip_solutions_v2012-04-03/USB/Device - HID - Custom Demos/PnP Demo - Cross Platform Software/HIDAPI/linux'
-let g:netrw_dirhist_7='/home/flopez/repoB105/lineo/dopplerPC/test/channels_file'
