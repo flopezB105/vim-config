@@ -18,11 +18,20 @@ snippet HEADER
 	
 	Author:		flopez, flopez@m2c-solutions.es 
 snippet m2c 
-	File name:	`expand('%:t')`
-	Description:
-	Version:	1.0
-	Created:	`strftime("%Y_%m_%d__%H:%M:%S")`
-	Revision:	none
-	
-	Author:	flopez, flopez@m2c-solutions.es 
-
+	/*!
+	 *  @file `expand('%:t')`
+	 *
+	 *  @brief
+	 *  @version  
+	 *  @date  `strftime("%Y-%m-%d %H:%M")` 
+	 *  @author Fernando López (flopez@m2c-solutions.com)
+	 *  @organization  M2C Solutions
+	 *
+	 */
+	 
+	 
+	/*
+	 * Copyright (C) Machine To Cloud Solutions, S.L. - `strftime("%Y")` - All Rights Reserved
+	 * Unauthorized copying of this file, via any medium is strictly prohibited
+	 * Proprietary and confidential
+	 */
