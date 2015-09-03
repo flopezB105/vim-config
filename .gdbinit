@@ -51,6 +51,222 @@ define m3_it
   set $next_it = ( (($icsr & $VECTPENDING)>>12) -16)
   printf "Active = %d; Next = %d\n", $active_it, $next_it
 
+  set $it_id = 0 
+  if ($active_it == $it_id)
+    printf "WWDG"
+    printf "\n"
+  end 
+  set $it_id = 1 
+  if ($active_it == $it_id)
+    printf "PVD"
+    printf "\n"
+  end 
+  set $it_id = 2 
+  if ($active_it == $it_id)
+    printf "TAMPER_STAMP"
+    printf "\n"
+  end 
+  set $it_id = 3 
+  if ($active_it == $it_id)
+    printf "RTC_WKUP"
+    printf "\n"
+  end 
+  set $it_id = 4 
+  if ($active_it == $it_id)
+    printf "FLASH"
+    printf "\n"
+  end 
+  set $it_id = 5 
+  if ($active_it == $it_id)
+    printf "RCC"
+    printf "\n"
+  end 
+  set $it_id = 6 
+  if ($active_it == $it_id)
+    printf "EXTI0"
+    printf "\n"
+  end 
+  set $it_id = 7 
+  if ($active_it == $it_id)
+    printf "EXTI1"
+    printf "\n"
+  end 
+  set $it_id = 8 
+  if ($active_it == $it_id)
+    printf "EXTI2"
+    printf "\n"
+  end 
+  set $it_id = 9 
+  if ($active_it == $it_id)
+    printf "EXTI3"
+    printf "\n"
+  end 
+  set $it_id = 10 
+  if ($active_it == $it_id)
+    printf "EXTI4 EXTI"
+    printf "\n"
+  end 
+  set $it_id = 11 
+  if ($active_it == $it_id)
+    printf "DMA1_Channel1"
+    printf "\n"
+  end 
+  set $it_id = 12 
+  if ($active_it == $it_id)
+    printf "DMA1_Channel2"
+    printf "\n"
+  end 
+  set $it_id = 13 
+  if ($active_it == $it_id)
+    printf "DMA1_Channel3"
+    printf "\n"
+  end 
+  set $it_id = 14 
+  if ($active_it == $it_id)
+    printf "DMA1_Channel4"
+    printf "\n"
+  end 
+  set $it_id = 15 
+  if ($active_it == $it_id)
+    printf "DMA1_Channel5"
+    printf "\n"
+  end 
+  set $it_id = 16 
+  if ($active_it == $it_id)
+    printf "DMA1_Channel6"
+    printf "\n"
+  end 
+  set $it_id = 17 
+  if ($active_it == $it_id)
+    printf "DMA1_Channel7"
+    printf "\n"
+  end 
+  set $it_id = 18 
+  if ($active_it == $it_id)
+    printf "ADC1"
+    printf "\n"
+  end 
+  set $it_id = 19 
+  if ($active_it == $it_id)
+    printf "USB"
+    printf "\n"
+  end 
+  set $it_id = 20 
+  if ($active_it == $it_id)
+    printf "USB_LP"
+    printf "\n"
+  end 
+  set $it_id = 21 
+  if ($active_it == $it_id)
+    printf "DAC"
+    printf "\n"
+  end 
+  set $it_id = 22 
+  if ($active_it == $it_id)
+    printf "COMP"
+    printf "\n"
+  end 
+  set $it_id = 23 
+  if ($active_it == $it_id)
+    printf "EXTI9_5"
+    printf "\n"
+  end 
+  set $it_id = 24 
+  if ($active_it == $it_id)
+    printf "LCD"
+    printf "\n"
+  end 
+  set $it_id = 25 
+  if ($active_it == $it_id)
+    printf "TIM9"
+    printf "\n"
+  end 
+  set $it_id = 27 
+  if ($active_it == $it_id)
+    printf "TIM11"
+    printf "\n"
+  end 
+  set $it_id = 28 
+  if ($active_it == $it_id)
+    printf "TIM2"
+    printf "\n"
+  end 
+  set $it_id = 29 
+  if ($active_it == $it_id)
+    printf "TIM3"
+    printf "\n"
+  end 
+  set $it_id = 30 
+  if ($active_it == $it_id)
+    printf "TIM4"
+    printf "\n"
+  end 
+  set $it_id = 31 
+  if ($active_it == $it_id)
+    printf "I2C1_EV"
+    printf "\n"
+  end 
+  set $it_id = 32 
+  if ($active_it == $it_id)
+    printf "I2C1_ER"
+    printf "\n"
+  end 
+  set $it_id = 33 
+  if ($active_it == $it_id)
+    printf "I2C2_EV"
+    printf "\n"
+  end 
+  set $it_id = 34 
+  if ($active_it == $it_id)
+    printf "I2C2_ER"
+    printf "\n"
+  end 
+  set $it_id = 36 
+  if ($active_it == $it_id)
+    printf "SPI2"
+    printf "\n"
+  end 
+  set $it_id = 37 
+  if ($active_it == $it_id)
+    printf "USART1"
+    printf "\n"
+  end 
+  set $it_id = 38 
+  if ($active_it == $it_id)
+    printf "USART2"
+    printf "\n"
+  end 
+  set $it_id = 39 
+  if ($active_it == $it_id)
+    printf "USART3"
+    printf "\n"
+  end 
+  set $it_id = 40 
+  if ($active_it == $it_id)
+    printf "EXTI15_10"
+    printf "\n"
+  end 
+  set $it_id = 41 
+  if ($active_it == $it_id)
+    printf "RTC_Alarm"
+    printf "\n"
+  end 
+  set $it_id = 42 
+  if ($active_it == $it_id)
+    printf "USB_FS_WKUP"
+    printf "\n"
+  end 
+  set $it_id = 43 
+  if ($active_it == $it_id)
+    printf "TIM6"
+    printf "\n"
+  end 
+  set $it_id = 44 
+  if ($active_it == $it_id)
+    printf "TIM7"
+    printf "\n"
+  end 
+
 
 end
 
@@ -102,9 +318,10 @@ define m3_ehealth_buf_plot
 
   printf "  --  \n"
 
+#dma buffer
   printf "dma_buffer \n"
-  printf "pointer = %u; space_left = %u;\n", dma_eeg_rx_buffer.rx_data_from_spi, dma_eeg_rx_buffer.rx_data_from_spi_space_left
-  set $point_to = dma_eeg_rx_buffer.rx_data_from_spi
+  printf "pointer = %u; space_left = %u;\n", dma_eeg_rx_buffer.rx_data_from_spi_pointer, dma_eeg_rx_buffer.space_left
+  set $point_to = dma_eeg_rx_buffer.rx_data_from_spi_pointer
 
   set $i = 0
   set $size = 5
@@ -124,13 +341,53 @@ define m3_ehealth_buf_plot
   set $size = 5
   while $i < $size
     if ($i == $point_to)
-      printf "   \\/\\/\\/\\/   \n"
+      printf "                \\/\\/\\/\\/   \n"
     end
     p/x dma_eeg_rx_buffer.dma_spi_rx_data_B[$i].eeg_data_structure.info
     set $i = $i+1
   end
-  
+
+printf "\n"
+printf "\n"
+printf "\n"
+printf "\n"
+
+#dma buffer OLD  
+  printf "<< OLD >> dma_buffer << OLD >>\n"
+  printf "pointer = %u; space_left = %u;\n", eeg_dma_buffer_old_cpy.rx_data_from_spi_pointer, eeg_dma_buffer_old_cpy.space_left
+  set $point_to = eeg_dma_buffer_old_cpy.rx_data_from_spi_pointer
+
+  set $i = 0
+  set $size = 5
+  while $i < $size
+    if ($i == $point_to)
+      printf "                \\/\\/\\/\\/   \n"
+    end
+    p/x eeg_dma_buffer_old_cpy.dma_spi_rx_data_A[$i].eeg_data_structure.info
+    set $i = $i+1
+  end
+
+  printf " - \n"
+
+  set $point_to = $point_to - 5
+
+  set $i = 0
+  set $size = 5
+  while $i < $size
+    if ($i == $point_to)
+      printf "   \\/\\/\\/\\/   \n"
+    end
+    p/x eeg_dma_buffer_old_cpy.dma_spi_rx_data_B[$i].eeg_data_structure.info
+    set $i = $i+1
+  end
+
 printf "  --  \n"
+  printf "eeg_buffer_pre_data_A_old \n"
+  p/x eeg_buffer_pre_data_A_old
+  printf "dma_eeg_rx_buffer.copy_in_process \n"
+  p dma_eeg_rx_buffer.copy_in_process
+  printf "no_space_left_dma_buff_eeg \n"
+  p no_space_left_dma_buff_eeg
   
 end
 
