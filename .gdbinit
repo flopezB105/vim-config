@@ -39,6 +39,7 @@ end
 
 #STM32 SPECIFIC ONES
 
+#CURRENT && NEXT INTERRUPT
 define m3_it
   #ICSR
   set $ICSR = 0xE000ED04 
@@ -271,6 +272,271 @@ define m3_it
 end
 
 document m3_it
+end
+
+#UART SR
+define m3_uart
+#PERIPH ADDR for stm32l1
+    set $PERIPH_BASE = 0x40000000
+    set $APB1PERIPH_BASE = $PERIPH_BASE
+    set $APB2PERIPH_BASE = ($PERIPH_BASE + 0x10000)
+    set $AHBPERIPH_BASE = ($PERIPH_BASE + 0x20000)
+
+#UART BASE
+    set $USART1_BASE = $APB2PERIPH_BASE + 0x3800 
+    set $USART2_BASE = $APB1PERIPH_BASE + 0x4400 
+    set $USART3_BASE = $APB1PERIPH_BASE + 0x4800
+
+#UART SR
+    set $USART1_SR = $USART1_BASE + 0x00
+    set $USART2_SR = $USART2_BASE + 0x00
+    set $USART3_SR = $USART3_BASE + 0x00
+
+    set $CTS = 0x00000200
+    set $LDB = 0x00000100
+    set $TXE = 0x00000080 
+    set $TC  = 0x00000040 
+    set $RXNE= 0x00000020 
+    set $IDLE= 0x00000010 
+    set $ORE = 0x00000008 
+    set $NF  = 0x00000004 
+    set $FE  = 0x00000002 
+    set $PE  = 0x00000001 
+
+#USART1
+    set $usart_sr = $USART1_SR
+    p/x $usart_sr
+    printf "Active UART1 interrupts = \n"
+  
+    set $mask = $CTS
+    if ((*$usart_sr & $mask) == $mask)
+        printf "CTS"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $LDB
+    if ((*$usart_sr & $mask) == $mask)
+        printf "LDB"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $TXE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "TXE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $TC
+    if ((*$usart_sr & $mask) == $mask)
+        printf "TC"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $RXNE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "RXNE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $IDLE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "IDLE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $ORE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "ORE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $NF
+    if ((*$usart_sr & $mask) == $mask)
+        printf "NF"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $FE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "FE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $PE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "PE"
+        printf " == 1"
+        printf "\n"
+    end 
+    printf "\n\n" 
+#USART END
+    
+#USART2
+    set $usart_sr = $USART2_SR
+    p/x $usart_sr
+    printf "Active UART2 interrupts = \n"
+  
+    set $mask = $CTS
+    if ((*$usart_sr & $mask) == $mask)
+        printf "CTS"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $LDB
+    if ((*$usart_sr & $mask) == $mask)
+        printf "LDB"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $TXE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "TXE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $TC
+    if ((*$usart_sr & $mask) == $mask)
+        printf "TC"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $RXNE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "RXNE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $IDLE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "IDLE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $ORE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "ORE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $NF
+    if ((*$usart_sr & $mask) == $mask)
+        printf "NF"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $FE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "FE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $PE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "PE"
+        printf " == 1"
+        printf "\n"
+    end
+    printf "\n\n" 
+#USART END
+
+#USART3
+    set $usart_sr = $USART3_SR
+    p/x $usart_sr
+    printf "Active UART3 interrupts = \n"
+  
+    set $mask = $CTS
+    if ((*$usart_sr & $mask) == $mask)
+        printf "CTS"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $LDB
+    if ((*$usart_sr & $mask) == $mask)
+        printf "LDB"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $TXE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "TXE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $TC
+    if ((*$usart_sr & $mask) == $mask)
+        printf "TC"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $RXNE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "RXNE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $IDLE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "IDLE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $ORE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "ORE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $NF
+    if ((*$usart_sr & $mask) == $mask)
+        printf "NF"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $FE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "FE"
+        printf " == 1"
+        printf "\n"
+    end 
+
+    set $mask = $PE
+    if ((*$usart_sr & $mask) == $mask)
+        printf "PE"
+        printf " == 1"
+        printf "\n"
+    end 
+    printf "\n\n" 
+#USART END
+
+end
+
+document m3_uart
 end
 
  #related to projects
