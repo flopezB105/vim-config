@@ -45,8 +45,9 @@ set expandtab
 let @q = 'yw€@7pi >€kl<@die.upm.esBByww€krP€kDI€kd'
 
 "spelllang
-nmap <C-s> :setlocal spell spelllang=es_es<CR>
-nmap <C-g> :setlocal spell spelllang=en_en<CR>
+nmap <F3> :setlocal spell spelllang=es<CR>
+nmap <F4> :setlocal spell spelllang=en<CR>
+nmap <F2> :set nospell<CR>
 
 "ConqueGDB arm
 let g:ConqueGdb_GdbExe = '/usr/local/bin/arm-none-eabi-gdb'
