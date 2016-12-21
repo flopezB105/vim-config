@@ -7,6 +7,12 @@ let g:clang_close_preview=1
 let g:clang_complete_copen=1
 let g:clang_hl_errors=1
 let g:clang_debug=1
+" Extra clang config
+let g:clang_periodic_quickfix=1
+let g:clang_snippets_engine=1
+
+"background
+set background=dark
 
 "
 filetype indent on
