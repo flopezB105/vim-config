@@ -16,6 +16,7 @@ set background=dark
 
 "
 filetype indent on
+filetype plugin indent on
 
 "ruby
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
