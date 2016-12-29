@@ -1,3 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/flopez/repoM2C/m2c-fw-lib.git/stm32/nimbus/lib_nimbus_hal'
+let g:netrw_dirhist_2='/media/flopez/SD1-1'
+let g:netrw_dirhist_3='/home/flopez/repoM2C/m2c.git/sw/imx6/scripts/autotest'
+let g:netrw_dirhist_4='/home/flopez/repoM2C/m2c-gw-install/daemons'
