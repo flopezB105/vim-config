@@ -37,9 +37,6 @@ set hls
 set incsearch
 "set ignorecase
 
-"ctrlp plugins
-set runtimepath^=~/.vim/bundle/ctrlp
-
 "Map spell check
 map <F4> :set spell!<CR><Bar>:echo "Spell Check: " . strpart("OffOn", 3 * &spell, 3)<CR>
 
@@ -110,3 +107,6 @@ autocmd BufNewFile *.{h,hh} call <SID>insert_gates()
 
 "headers in .h
 let g:C_SourceCodeExtensions  = 'h cc cp cxx cpp CPP c++ C i ii'
+
+"org mode
+let g:org_agenda_files=['~/org/*.org']
