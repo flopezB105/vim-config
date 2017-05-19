@@ -109,4 +109,4 @@ autocmd BufNewFile *.{h,hh} call <SID>insert_gates()
 let g:C_SourceCodeExtensions  = 'h cc cp cxx cpp CPP c++ C i ii'
 
 "org mode
-let g:org_agenda_files=['~/org/*.org']
+let g:org_agenda_files=['~/Dropbox/M2C/doc/org/*.org']

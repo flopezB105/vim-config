@@ -6,6 +6,9 @@
 # 
 # Author:        flopez, flopez@m2c-solutions.es 
 
+#CONFIG
+set history save on
+
 #Example of command
 define armex
   printf "EXEC_RETURN (LR):\n",
@@ -38,6 +41,204 @@ xPSR, ReturnAddress, LR (R14), R12, R3, R2, R1, and R0
 end
 
 #STM32 SPECIFIC ONES
+
+#ENABLE HARD FAULT OP
+define m3_hard_enable
+  set $SCB_CCR     = ($SCB_BASE + 0x14)
+  set $SCB_SHP_BASE= ($SCB_BASE + 0x18)
+  set $SCB_SHCSR   = ($SCB_BASE + 0x24)
+
+  set *$SCB_SHCSR = (*$SCB_SHCSR | 0x00070000)
+
+  printf "enable usage-, bus-, and MMu Fault\n"
+end
+
+define m3_hard_all_enable
+  set $SCB_CCR     = ($SCB_BASE + 0x14)
+  set $SCB_SHP_BASE= ($SCB_BASE + 0x18)
+  set $SCB_SHCSR   = ($SCB_BASE + 0x24)
+
+  set *$SCB_SHCSR = (*$SCB_SHCSR | 0x00070000)
+  printf "enable usage-, bus-, and MMu Fault\n"
+  
+  set *$SCB_CCR= (*$SCB_CCR | 0x00000018)
+  printf "div 0 && unaligned address enabled \n"
+end
+
+#READ HARD FAULT OPTIONS
+define m3_hard
+  set $ICSR = 0xE000ED04 
+  set $VECTACTIVE  = 0x000001FF
+  set $VECTPENDING = 0x0003F000
+  set $SCB_BASE    = (0xE000E000 + 0x0D00)
+  set $SCB_CCR     = ($SCB_BASE + 0x14)
+  set $SCB_SHP_BASE= ($SCB_BASE + 0x18)
+  set $SCB_SHCSR   = ($SCB_BASE + 0x24)
+  set $SCB_CFSR    = ($SCB_BASE + 0x28)
+  set $SCB_HFSR    = ($SCB_BASE + 0x2c)
+  set $SCB_MMFAR   = ($SCB_BASE + 0x34)
+  set $SCB_BFAR    = ($SCB_BASE + 0x38)
+  
+  
+  printf "SCB->CCR (0x%X) = 0x%X\n", $SCB_CCR, *$SCB_CCR
+  set $mask=0x00000001
+  if ((*$SCB_CCR & $mask) == $mask)
+     printf "NONBASETHRDENA\n"
+  end
+  set $mask=0x00000002
+  if ((*$SCB_CCR & $mask) == $mask)
+     printf "USERSETMPEND\n"
+  end
+  set $mask=0x00000008
+  if ((*$SCB_CCR & $mask) == $mask)
+     printf "UNALING_TRP\n"
+  end
+  set $mask=0x00000010
+  if ((*$SCB_CCR & $mask) == $mask)
+     printf "DIV_O_TRIP\n"
+  end
+  set $mask=0x00000100
+  if ((*$SCB_CCR & $mask) == $mask)
+     printf "BFHFNMIGN\n"
+  end
+  set $mask=0x00000200
+  if ((*$SCB_CCR & $mask) == $mask)
+     printf "STKALIGN\n"
+  end
+  
+  printf "SCB->SHCSR(0x%X) = 0x%x\n", $SCB_SHCSR, *$SCB_SHCSR
+  set $mask=0x00000001
+  if ((*$SCB_SHCSR & $mask) == $mask)
+     printf "MEMFAULT_ACT\n"
+  end
+  set $mask=0x00000002
+  if ((*$SCB_SHCSR & $mask) == $mask)
+     printf "BUSFAULT_ACT\n"
+  end
+  set $mask=0x00000008
+  if ((*$SCB_SHCSR & $mask) == $mask)
+     printf "USAGEFAULT_ACT\n"
+  end
+  set $mask=0x00000080
+  if ((*$SCB_SHCSR & $mask) == $mask)
+     printf "SVCALLACT\n"
+  end
+  set $mask=0x00000100
+  if ((*$SCB_SHCSR & $mask) == $mask)
+     printf "MONITORACT\n"
+  end
+  set $mask=0x00000400
+  if ((*$SCB_SHCSR & $mask) == $mask)
+     printf "PENDSVACT\n"
+  end
+  set $mask=0x00000800
+  if ((*$SCB_SHCSR & $mask) == $mask)
+     printf "SYSTICKACT\n"
+  end
+  set $mask=0x00001000
+  if ((*$SCB_SHCSR & $mask) == $mask)
+     printf "USGFAULTPENDED\n"
+  end
+  set $mask=0x00002000
+  if ((*$SCB_SHCSR & $mask) == $mask)
+     printf "MEMFAULTPEND\n"
+  end
+  set $mask=0x00004000
+  if ((*$SCB_SHCSR & $mask) == $mask)
+     printf "BUSFAULTPEND\n"
+  end
+  set $mask=0x00008000
+  if ((*$SCB_SHCSR & $mask) == $mask)
+     printf "SVCALLPEND\n"
+  end
+
+  printf "SCB->CFSR(0x%X) = 0x%X\n", $SCB_CFSR, *$SCB_CFSR
+  set $mask=0x00000001
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf "Instruction access violation flag\n"
+  end
+  set $mask=0x00000002
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf "Data access violation flag\n"
+  end
+  set $mask=0x00000008
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf "unstacking for an exception return has caused one or more access violations.  This fault is chained to the handler which means that the original return stack is still present. The processor has not adjusted the SP from the failing return, and has not performed a new save. The processor has not written a fault address to the SCB->MMFAR. Potential reasons: a) Stack pointer is corrupted b) MPU region for the stack changed during execution of the exception handler\n"
+  end
+  set $mask=0x00000010
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " stacking for an exception entry has caused one or more access violations.  The SP is still adjusted but the values in the context area on the stack might be incorrect.  The processor has not written a fault address to the SCB->MMFAR. Potential reasons: a) Stack pointer is corrupted or not initialized b) Stack is reaching a region not defined by the MPU as read/write memory \n"
+  end
+  set $mask=0x00000020
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf "MLSPERR\n"
+  end
+  set $mask=0x00000080
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf "Memory Management Fault Address Register (SCB->MMFAR) valid flag: 0 = value in SCB->MMFAR is not a valid fault address 1 = SCB->MMFAR holds a valid fault address.  If a Memory Management Fault occurs and is escalated to a Hard Fault because of priority, the Hard Fault handler must set this bit to 0. This prevents problems on return to a stacked active Memory Management Fault handler whose SCB->MMFAR value has been overwritten.  \n"
+  end
+  set $mask=0x00000100
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " Instruction bus error\n"
+  end
+  set $mask=0x00000200
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " Precise data bus error\n"
+  end
+  set $mask=0x00000400
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " Imprecise data bus error\n"
+  end
+  set $mask=0x00000800
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " BusFault on unstacking for a return from exception\n"
+  end
+  set $mask=0x00001000
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " BusFault on stacking for exception entry\n"
+  end
+  set $mask=0x00002000
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " LSPERR\n"
+  end
+  set $mask=0x00008000
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf "Bus Fault Address Register (SCB->BFAR) valid flag: 0 = value in BFAR is not a valid fault address 1 = BFAR holds a valid fault address. The processor sets this bit after a Bus Fault where the address is known. Other faults can set this bit to 0, such as a Memory Management Fault occurring later. If a Bus Fault occurs and is escalated to a Hard Fault because of priority, the Hard Fault handler must set this bit to 0. This prevents problems if returning to a stacked active Bus Fault handler whose SCB->BFAR value has been overwritten \n"
+  end
+  set $mask=0x00010000
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " UNDEFINSTR\n"
+  end
+  set $mask=0x00020000
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " INVSTATE\n"
+  end
+  set $mask=0x00040000
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " INVPC\n"
+  end
+  set $mask=0x00080000
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " NOCP\n"
+  end
+  set $mask=0x01000000
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " UNALIGNED\n"
+  end
+  set $mask=0x02000000
+  if ((*$SCB_CFSR & $mask) == $mask)
+     printf " DIVBYZERO\n"
+  end
+  
+  printf "SCB->SHP[12] = \n"  
+  x/3x $SCB_SHP_BASE
+ 
+  printf "SCB->HFSR = 0x%X\n"  , *$SCB_HFSR 
+  printf "SCB->MMFAR = 0x%X\n" , *$SCB_MMFAR 
+  printf "SCB->BFAR = 0x%X\n"  , *$SCB_BFAR   
+  
+
+end
 
 #CURRENT && NEXT INTERRUPT
 define m3_it
@@ -180,6 +381,11 @@ define m3_it
   set $it_id = 25 
   if ($active_it == $it_id)
     printf "TIM9"
+    printf "\n"
+  end 
+  set $it_id = 26 
+  if ($active_it == $it_id)
+    printf "TIM10"
     printf "\n"
   end 
   set $it_id = 27 
