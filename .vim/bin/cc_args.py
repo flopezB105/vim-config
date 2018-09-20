@@ -3,7 +3,8 @@
 
 import sys
 
-CONFIG_NAME = ".clang_complete"
+#CONFIG_NAME = ".clang_complete"
+CONFIG_NAME = ".clang"
 
 def readConfiguration():
   try:
