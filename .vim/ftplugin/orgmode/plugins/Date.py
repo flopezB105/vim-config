@@ -119,7 +119,7 @@ class Date(object):
 
 		# check for full days: Mon, Tue, Wed, Thu, Fri, Sat, Sun
 		modifier_lc = modifier.lower()
-		match = re.search(u'mon|tue|wed|thu|fri|sat|sun|lun|mar|mie|jue|vie|sab|dom', modifier_lc)
+		match = re.search(u'mon|tue|wed|thu|fri|sat|sun', modifier_lc)
 		if match:
 			weekday_mapping = {
 				u'mon': 0, u'tue': 1, u'wed': 2, u'thu': 3,
