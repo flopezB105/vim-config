@@ -45,6 +45,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+com -nargs=1 Psearch vimgrep <args> **/*.c **/*.h
+
 "Macro para los usuarios del repo en la migracion
 let @q = 'yw€@7pi >€kl<@die.upm.esBByww€krP€kDI€kd'
 
