@@ -56,12 +56,14 @@ nmap <F2> :set nospell<CR>
 "ConqueGDB arm
 let g:ConqueGdb_GdbExe = '/usr/local/bin/arm-none-eabi-gdb'
 
+"Doxygen Syntax
+let g:load_doxygen_syntax=1
 "Doxygen doc
-let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
-let g:DoxygenToolkit_paramTag_pre="@Param "
-let g:DoxygenToolkit_returnTag="@Returns   "
-let g:DoxygenToolkit_blockHeader="-------------------------------"
-let g:DoxygenToolkit_blockFooter="---------------------------------"
+let g:DoxygenToolkit_briefTag_pre="@brief"
+let g:DoxygenToolkit_paramTag_pre="@param "
+let g:DoxygenToolkit_returnTag="@returns   "
+"let g:DoxygenToolkit_blockHeader="-------------------------------"
+"let g:DoxygenToolkit_blockFooter="---------------------------------"
 let g:DoxygenToolkit_authorName="flopez"
 let g:DoxygenToolkit_licenseTag="""\<enter>"
 
