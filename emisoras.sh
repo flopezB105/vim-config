@@ -16,6 +16,7 @@ rockFM="https://rockfm-cope-rrcast.flumotion.com/cope/rockfm-low.mp3"
 ser="https://20863.live.streamtheworld.com/CADENASER_SC"
 megastar="https://megastar-cope.flumotion.com/chunks.m3u8"
 europaFm="https://livefastly-webs.europafm.com/europafm/audio/chunklist.m3u8"
+m80="https://19983.live.streamtheworld.com/LOS40_CLASSIC_SC"
 
 HEIGHT=15
 WIDTH=40
@@ -29,7 +30,8 @@ OPTIONS=(1 "los40Dance"
          3 "rockfm"
          4 "ser"
          5 "megastar"
-         6 "europafm")
+         6 "europafm"
+         7 "m80")
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \
@@ -64,5 +66,9 @@ case $CHOICE in
         6)
             echo "europaFm"
             mpv $europaFm
+            ;;
+        7)
+            echo "m80"
+            mpv $m80
             ;;
 esac
