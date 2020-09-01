@@ -17,6 +17,7 @@ ser="https://20863.live.streamtheworld.com/CADENASER_SC"
 megastar="https://megastar-cope.flumotion.com/chunks.m3u8"
 europaFm="https://livefastly-webs.europafm.com/europafm/audio/chunklist.m3u8"
 m80="https://19983.live.streamtheworld.com/LOS40_CLASSIC_SC"
+rMarca="https://radiomarca.streaming-pro.com:8031/radiomarca.mp3"
 
 HEIGHT=15
 WIDTH=40
@@ -31,7 +32,8 @@ OPTIONS=(1 "los40Dance"
          4 "ser"
          5 "megastar"
          6 "europafm"
-         7 "m80")
+         7 "m80"
+         8 "radioMarca")
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \
@@ -70,5 +72,9 @@ case $CHOICE in
         7)
             echo "m80"
             mpv $m80
+            ;;
+        8)
+            echo "radioMarca"
+            mpv $rMarca
             ;;
 esac
