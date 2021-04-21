@@ -13,6 +13,7 @@ let g:clang_snippets_engine=1
 
 "background
 set background=dark
+"set background=light
 
 "
 filetype indent on
@@ -45,10 +46,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+" find using native vim grep (C code)
 com -nargs=1 Psearch vimgrep <args> **/*.c **/*.h
-
-"Macro para los usuarios del repo en la migracion
-let @q = 'yw€@7pi >€kl<@die.upm.esBByww€krP€kDI€kd'
 
 "spelllang
 nmap <F3> :setlocal spell spelllang=es<CR>
@@ -68,23 +67,6 @@ let g:DoxygenToolkit_returnTag="@returns   "
 "let g:DoxygenToolkit_blockFooter="---------------------------------"
 let g:DoxygenToolkit_authorName="flopez"
 let g:DoxygenToolkit_licenseTag="""\<enter>"
-
-"Find in Google
-if $TERM =~ "xterm"
-
-    vmap ?? y<Esc>:silent exec
-                \ ":!/usr/bin/opera http://www.google.com/search?q='"
-                \ . substitute(@","\\W\\+\\\\|\\<\\w\\>",'\\%20',"g")
-                \ . "' &"<CR><CR>
-
-else
-
-    vmap ?? <Esc>:silent exec
-                \ ":!start c:/opera/6/opera.exe http://www.google.com/search?q=\""
-                \ . substitute(@*,"\\W\\+\\\\|\\<\\w\\>"," ","g")
-                \ . "\""<CR><CR>
-
-endif
 
 "Config clipboard
 :set clipboard=unnamed 
@@ -112,5 +94,35 @@ autocmd BufNewFile *.{h,hh} call <SID>insert_gates()
 "headers in .h
 let g:C_SourceCodeExtensions  = 'h cc cp cxx cpp CPP c++ C i ii'
 
-"org mode
-let g:org_agenda_files=['~/Dropbox/M2C/doc/org/*.org']
+"netrw (default file explorer) --> like nerdtree
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+"augroup ProjectDrawer
+"    autocmd!
+"    autocmd VimEnter * :Vexplore
+"augroup END
+
+"hex conversion
+"toHex -> %!xxd 
+"toBin -> %!xxd -r
+
+"kernel Hacking
+"" 80 characters line
+"set colorcolumn=81
+""execute "set colorcolumn=" . join(range(81,335), ',')
+"highlight ColorColumn ctermbg=Black ctermfg=DarkRed
+"" Highlight trailing spaces
+"" http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+"highlight ExtraWhitespace ctermbg=red guibg=red
+"match ExtraWhitespace /\s\+$/
+"autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+"autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+"autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+"autocmd BufWinLeave * call clearmatches()
+
+"linuxty.vim (Linux coding style pluging)
+"Set apply directories (force only above dirs)
+let g:linuxsty_patterns = [ "/usr/src/", "/linux", "/home/flopez_nbck/tmp/linux", "~/prj/usb2mdio/linux_drivers" ]
