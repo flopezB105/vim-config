@@ -4,10 +4,11 @@
 # Created:       2015_09_01__09:17:54
 # Revision:      none
 # 
-# Author:        flopez, flopez@m2c-solutions.es 
+# Author:        flopez 
 
 #CONFIG
 set history save on
+set breakpoint pending on
 
 #Example of command
 define armex
@@ -229,10 +230,10 @@ define m3_hard
   if ((*$SCB_CFSR & $mask) == $mask)
      printf " DIVBYZERO\n"
   end
-  
-  printf "SCB->SHP[12] = \n"  
+
+  printf "SCB->SHP[12] = \n"
   x/3x $SCB_SHP_BASE
- 
+
   printf "SCB->HFSR = 0x%X\n"  , *$SCB_HFSR 
   printf "SCB->MMFAR = 0x%X\n" , *$SCB_MMFAR 
   printf "SCB->BFAR = 0x%X\n"  , *$SCB_BFAR   
@@ -869,3 +870,157 @@ Shows buffer status
 This function is usefull to see whole situation
 end
 
+
+
+
+#CURRENT && NEXT INTERRUPT
+define m0_it
+  #ICSR
+  set $ICSR = 0xE000ED04 
+  set $VECTACTIVE  = 0x000001FF
+  set $VECTPENDING = 0x0003F000
+  printf "IT (ICSR) = \n"
+  set $icsr = *$ICSR
+  p/x $icsr 
+  set $active_it = (($icsr & $VECTACTIVE) -16)
+  set $next_it = ( (($icsr & $VECTPENDING)>>12) -16)
+  printf "Active = %d; Next = %d\n", $active_it, $next_it
+
+  set $it_id = 0 
+  if ($active_it == $it_id)
+    printf "WWDG"
+    printf "\n"
+  end 
+  set $it_id = 2 
+  if ($active_it == $it_id)
+    printf "RTC"
+    printf "\n"
+  end 
+  set $it_id = 3 
+  if ($active_it == $it_id)
+    printf "FLASH"
+    printf "\n"
+  end 
+  set $it_id = 4 
+  if ($active_it == $it_id)
+    printf "RCC"
+    printf "\n"
+  end 
+  set $it_id = 5 
+  if ($active_it == $it_id)
+    printf "EXTI0_1"
+    printf "\n"
+  end 
+  set $it_id = 6 
+  if ($active_it == $it_id)
+    printf "EXTI2_3"
+    printf "\n"
+  end 
+  set $it_id = 7 
+  if ($active_it == $it_id)
+    printf "EXTI4_15"
+    printf "\n"
+  end 
+  set $it_id = 9 
+  if ($active_it == $it_id)
+    printf "DMA1_Channel1"
+    printf "\n"
+  end 
+  set $it_id = 10 
+  if ($active_it == $it_id)
+    printf "DMA1_Channel2_3"
+    printf "\n"
+  end 
+  set $it_id = 11 
+  if ($active_it == $it_id)
+    printf "DMA1_Channel4_5"
+    printf "\n"
+  end 
+  set $it_id = 12 
+  if ($active_it == $it_id)
+    printf "ADC"
+    printf "\n"
+  end 
+  set $it_id = 13 
+  if ($active_it == $it_id)
+    printf "TIM1_BRK_UP_TRG_COM"
+    printf "\n"
+  end 
+  set $it_id = 14 
+  if ($active_it == $it_id)
+    printf "TIM1_CC"
+    printf "\n"
+  end 
+  set $it_id = 16 
+  if ($active_it == $it_id)
+    printf "TIM3"
+    printf "\n"
+  end 
+  set $it_id = 17 
+  if ($active_it == $it_id)
+    printf "TIM6"
+    printf "\n"
+  end 
+  set $it_id = 19  
+  if ($active_it == $it_id)
+    printf "TIM14" 
+    printf "\n"
+  end
+  set $it_id = 20  
+  if ($active_it == $it_id)
+    printf "TIM15"
+    printf "\n"
+  end
+  set $it_id = 21  
+  if ($active_it == $it_id)
+    printf "TIM16"
+    printf "\n"
+  end
+  set $it_id = 22  
+  if ($active_it == $it_id)
+    printf "TIM17"
+    printf "\n"
+  end
+  set $it_id = 23  
+  if ($active_it == $it_id)
+    printf "I2C1"
+    printf "\n"
+  end
+  set $it_id = 24  
+  if ($active_it == $it_id)
+    printf "I2C2"
+    printf "\n"
+  end
+  set $it_id = 25  
+  if ($active_it == $it_id)
+    printf "SPI1"
+    printf "\n"
+  end
+  set $it_id = 26  
+  if ($active_it == $it_id)
+    printf "SPI2"
+    printf "\n"
+  end
+  set $it_id = 27  
+  if ($active_it == $it_id)
+    printf "USART1"
+    printf "\n"
+  set $it_id = 28  
+  if ($active_it == $it_id)
+    printf "USART2"
+    printf "\n"
+  set $it_id = 29  
+  if ($active_it == $it_id)
+    printf "USART3_4_5_6"
+    printf "\n"
+  end
+  set $it_id = 31  
+  if ($active_it == $it_id)
+    printf "USB"
+    printf "\n"
+  end
+
+end
+
+document m0_it
+end
